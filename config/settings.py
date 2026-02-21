@@ -30,7 +30,13 @@ SECRET_KEY = 'django-insecure-tptz0u8lo7=lt3v1df=lnnyww1$m9d6i@+3o+$4udnjkhcjgk+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+RENDER_HOST = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+if RENDER_HOST:
+    ALLOWED_HOSTS.append(RENDER_HOST)
+else:
+    ALLOWED_HOSTS.append("*")
 
 
 # Application definition
@@ -132,3 +138,4 @@ STATIC_URL = 'static/'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
